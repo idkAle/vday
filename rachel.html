@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Size and Text Toggle</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+      h2 {
+        color: crimson;
+      }
+      .container {
+        text-align: center; /* Center-align the contents */
+        margin-top: 20px; /* Add some top margin for spacing */
+      }
+      .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: font-size 0.2s; /* Add transition effect for smoother size change */
+      }
+      .btn.yes {
+        background-color: rgb(218, 15, 15);
+        color: white;
+      }
+      .btn.no {
+        background-color: rgb(103, 75, 39);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="imageContainer">
+      <!-- Default image -->
+      <img src="please.gif" alt="Your GIF" width="400" height="300" />
+    </div>
+    <!-- Adjust the path, width, and height as needed -->
+    <h2>Will you be my Valentine?</h2>
+    <div class="container">
+      <button id="yesBtn" class="btn yes">Yes</button>
+      <button id="noBtn" class="btn no">No</button>
+    </div>
+    <script>
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+
+      let fontSize = 16; // Initial font size
+      let clickCount = 0;
+
+      noBtn.addEventListener("click", () => {
+        clickCount++;
+        fontSize += 10; // Increase font size by 10px on each click
+        yesBtn.style.fontSize = fontSize + "px"; // Set the new font size
+
+        // Change the text of the "Yes" button based on the click count
+        switch (clickCount) {
+          case 1:
+            yesBtn.innerText = "Yes!";
+            break;
+          case 2:
+            yesBtn.innerText = "YES!!!";
+            break;
+          case 3:
+            yesBtn.innerText = "You hate me?";
+            break;
+          case 4:
+            yesBtn.innerText = "._.";
+            break;
+          case 5:
+            yesBtn.innerText = "Im done.";
+            break;
+          default:
+            yesBtn.innerText = "Yes";
+            clickCount = 0; // Reset click count
+            break;
+        }
+      });
+
+      yesBtn.addEventListener("click", () => {
+        // Change the GIF when the "Yes" button is clicked
+        const imageContainer = document.getElementById("imageContainer");
+        imageContainer.innerHTML = `<img src="milk.gif" alt="Your GIF" width="400" height="300">`;
+      });
+    </script>
+  </body>
+</html>
